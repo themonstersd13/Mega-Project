@@ -1915,6 +1915,12 @@ function onGlobalKeydown(event) {
 
 function onClick(event) {
   var target = event.target;
+  var createTab = target.closest('[data-create-tab]');
+  if (createTab) {
+    state.createTab = createTab.getAttribute('data-create-tab');
+    scheduleRender(true);
+    return;
+  }
   var action = target.closest('[data-action]');
   if (action) {
     var value = action.getAttribute('data-action');
@@ -2065,7 +2071,9 @@ function onSubmit(event) {
   }
   if (formType === 'settings') {
     saveSettings(form);
+    return;
   }
+  notify('Unsupported form.');
 }
 
 function onInput(event) {
