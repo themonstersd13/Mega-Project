@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: synapse-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-synapse}
+      POSTGRES_USER: ${POSTGRES_USER:-synapse}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-synapse}
+    ports:
+      - "5432:5432"
+    volumes:
+      - synapse-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-synapse}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - synapse-network
+
+volumes:
+  synapse-db-data:
+    driver: local
+
+networks:
+  synapse-network:
+    driver: bridge

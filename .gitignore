@@ -1,0 +1,30 @@
+# IDE and editor files
+.idea/
+.vscode/
+**/.idea/
+**/.vscode/
+*.iml
+
+# Local env/config
+.env
+**/.env
+
+# Build outputs and caches
+target/
+**/target/
+out/
+**/out/
+out.txt
+**/out.txt
+.mvn/apache-maven-*/
+**/.mvn/apache-maven-*/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.bak
+
+# OS junk
+.DS_Store
+Thumbs.db

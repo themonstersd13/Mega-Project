@@ -1,0 +1,20 @@
+ How to Track Progress:
+In future chats, query the database:
+-- Check current phase
+SELECT phase_id, phase_name, status FROM work_phases
+WHERE status = 'in_progress';
+
+-- See recent activity (last 2 hours)
+SELECT task_id, log_entry, timestamp FROM work_log
+WHERE timestamp > datetime('now', '-2 hours')
+ORDER BY timestamp DESC LIMIT 10;
+
+---
+2026-09-08T19:36:00+05:30 | Governance continuation: resolved the bean conflict by making ResilientLlmGateway the primary LLM provider while preserving the Anthropic provider as the delegate. Maven test run is green after the fix.
+2026-09-08T19:37:00+05:30 | Build status: project compiles and tests pass for the current implementation scope.
+2026-09-08T19:38:00+05:30 | Remaining work is concentrated in Phase 5 governance/resilience, Phase 6 analytics, and Phase 7 demo/report validation.
+2026-09-08T20:24:00+05:30 | Governance slice complete: added budget tracking, approval resolution, and resilient LLM gateway wiring; project test suite is passing for the current implementation scope.
+2026-09-08T21:45:00+05:30 | Demo slice complete: added /demo seed, repeated evaluation, acceptance criteria, and report generation with benchmark stats, prediction output, and memory/governance checks.
+2026-09-08T21:51:00+05:30 | Tracing slice complete: added 3-task decomposition, run/trace message propagation, and message timeline endpoints; full Maven test suite passes.
+2026-09-08T22:05:00+05:30 | Studio UI complete: added a polished browser dashboard with workspace management, draggable task lanes, approvals, memory explainability, and evaluation reporting; progress trackers normalized.
+2026-09-21T22:05:00+05:30 | Studio redesign milestone: replaced the single-page dashboard with a routed shell, organization canvas/structure view, command palette, task board, approvals surface, memory workspace, and evaluation pages; Java tests remain green.
